@@ -1,9 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Grimmitt Games">
-  <defs>
-    <linearGradient id="t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#232a3a"/><stop offset="1" stop-color="#0b0d13"/></linearGradient>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2ff6b"/><stop offset="1" stop-color="#9fe21b"/></linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#t)"/>
-  <path d="M44.7 19.3 A18 18 0 1 0 50 32 H34.5" fill="none" stroke="url(#g)" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="46.6" cy="15.4" r="4.4" fill="#ff6a4d"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Grimmitt Games"><defs><linearGradient id="gt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262d3f"/><stop offset="1" stop-color="#0c0f16"/></linearGradient>
+<linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ecff8a"/><stop offset=".55" stop-color="#c6f432"/><stop offset="1" stop-color="#8fd61a"/></linearGradient>
+<linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a6a"/><stop offset="1" stop-color="#ff5a3c"/></linearGradient></defs><rect width="64" height="64" rx="18" fill="url(#gt)"/><rect x=".5" y=".5" width="63" height="63" rx="17.5" fill="none" stroke="#fff" stroke-opacity=".09"/><mask id="mb"><rect width="64" height="64" fill="#000"/><circle cx="32" cy="32" r="14.25" fill="none" stroke="#fff" stroke-width="9.5"/><rect x="32" y="0" width="32" height="30" fill="#000"/><rect x="33" y="30" width="20" height="9.5" fill="#fff"/><circle cx="32" cy="32" r="33" fill="none" stroke="#000" stroke-width="28"/></mask>
+<rect width="64" height="64" fill="url(#gl)" mask="url(#mb)"/><path d="M44.4 11.4 L52.6 16 L44.4 20.6 Z" fill="url(#gc)" stroke="url(#gc)" stroke-width="2.2" stroke-linejoin="round"/></svg>
