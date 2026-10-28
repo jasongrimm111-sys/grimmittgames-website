@@ -112,3 +112,9 @@ footer .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20
 .doc th,.doc td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 .doc th{font:600 .8rem var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .tablewrap{overflow-x:auto}
+
+/* YouTube attribution (official "Developed with YouTube" badge, cropped to its lettering, unaltered) */
+footer .yt{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border-top:1px solid var(--line);padding-top:18px}
+footer .yt img{width:200px;height:40px;object-fit:cover;margin:0}
+footer .yt span{font-size:.85rem}
+footer .yt a{color:var(--cream)}
