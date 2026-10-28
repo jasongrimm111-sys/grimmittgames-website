@@ -115,6 +115,8 @@ footer .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20
 
 /* YouTube attribution (official "Developed with YouTube" badge, cropped to its lettering, unaltered) */
 footer .yt{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border-top:1px solid var(--line);padding-top:18px}
-footer .yt img{width:200px;height:40px;object-fit:cover;margin:0}
+/* the badge file has wide empty margins: show its lettering (x 104-599, y 94-154 of 700 x 250) about 280px wide */
+footer .ytbadge{display:block;width:300px;height:54px;overflow:hidden;flex:none;max-width:100%}
+footer .ytbadge img{width:396px;height:auto;max-width:none;margin:-43px 0 0 -49px}
 footer .yt span{font-size:.85rem}
 footer .yt a{color:var(--cream)}
