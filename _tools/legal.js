@@ -34,6 +34,12 @@ const pages = {
 <h2>How long we keep it</h2>
 <p>We keep emails for as long as we need them to deal with your enquiry and any follow-up, and then delete them, normally within two years of our last contact, unless the law requires us to keep them longer.</p>
 
+<h2>Grimmitt Social, our posting tool</h2>
+<p><strong>Grimmitt Social</strong> (social.grimmittgames.com) is a private tool that only Grimmitt Games uses, to publish our own promotional videos for our games to our own accounts on YouTube, Instagram, Facebook, TikTok and X. Members of the public can't sign in to it or connect their accounts, and it doesn't collect information about the people who watch or interact with our posts.</p>
+<p><strong>YouTube API Services.</strong> Grimmitt Social uses YouTube API Services to upload our videos, with their titles, descriptions and tags, to our own YouTube channel. It asks Google only for permission to upload videos to that channel. It does not read, store or share information about other YouTube users or their content. By using our YouTube content you're also covered by the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>, and Google's handling of data is described in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+<p><strong>What the tool stores.</strong> The access keys for our own accounts, kept encrypted on GitHub (our hosting and automation provider) and never shown or shared; the schedule, captions and videos we create; and a record of each post (when it went out, its caption, and its ID and link on the platform). Captions may be drafted with an AI service (Anthropic), which receives only a description of our video and our own instructions, never information about other people.</p>
+<p><strong>Removing access.</strong> We can withdraw the tool's access to our Google account at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, and to the other platforms in their app settings; we then delete the stored keys. Questions about this tool: ${MAIL}.</p>
+
 <h2>Your rights</h2>
 <p>Under UK data protection law you have the right to:</p>
 <ul>
@@ -71,6 +77,9 @@ const pages = {
 
 <h2>Links to other websites</h2>
 <p>The website links to other sites, such as the App Store and monkeyvinerush.com. We aren't responsible for the content or privacy practices of sites we don't run.</p>
+
+<h2>Our videos on YouTube and other platforms</h2>
+<p>We publish videos to YouTube using YouTube API Services, and to Instagram, Facebook, TikTok and X through their own tools. Watching or interacting with our videos there is covered by each platform's own terms, including the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>, and their privacy policies, including the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. How we handle data in our posting tool is explained in our <a href="/privacy/">privacy policy</a>.</p>
 
 <h2>Accuracy and availability</h2>
 <p>We work to keep the website accurate and available, but it is provided "as is". Information about our games, such as features, prices and availability, can change, and the website may occasionally be unavailable or contain mistakes. We may change or remove any part of it at any time.</p>
