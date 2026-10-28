@@ -40,6 +40,10 @@ const pages = {
 <p><strong>What the tool stores.</strong> The access keys for our own accounts, kept encrypted on GitHub (our hosting and automation provider) and never shown or shared; the schedule, captions and videos we create; and a record of each post (when it went out, its caption, and its ID and link on the platform). Captions may be drafted with an AI service (Anthropic), which receives only a description of our video and our own instructions, never information about other people.</p>
 <p><strong>Removing access.</strong> We can withdraw the tool's access to our Google account at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, and to the other platforms in their app settings; we then delete the stored keys. Questions about this tool: ${MAIL}.</p>
 
+<h2>When we contact reviewers and press</h2>
+<p>We sometimes email reviewers, journalists, content creators and app curators to tell them about our games and ask whether they'd like to review them. We use the work email address and name they publish for this kind of contact, on the basis of our <strong>legitimate interests</strong> in promoting our games. Each email is sent individually, says who we are, and explains how to opt out.</p>
+<p>We keep the address, name, when we emailed and whether the email was delivered, so that we don't contact anyone twice by mistake. Emails are sent through our email delivery provider (Resend), which acts only on our instructions. If you reply "unsubscribe", or ask us at ${MAIL}, we add your address to a do-not-contact list and never email you again; you can also ask us to delete your details completely.</p>
+
 <h2>Your rights</h2>
 <p>Under UK data protection law you have the right to:</p>
 <ul>
