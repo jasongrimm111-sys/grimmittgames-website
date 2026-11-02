@@ -1,0 +1,32 @@
+# Christmas Day 2026: publishes the key that unlocks Andy's present on grimmittgames.com/andy
+# (the voucher is on the site only in encrypted form; the key is the repository secret GIFT_KEY).
+# Runs a few times after midnight in case GitHub delays a scheduled run; does nothing once the key is out, or before the day.
+name: Unlock Andy's present
+on:
+  schedule:
+    - cron: '1 0 25 12 *'
+    - cron: '20 0 25 12 *'
+    - cron: '0 1 25 12 *'
+    - cron: '0 3 25 12 *'
+    - cron: '0 7 25 12 *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  unlock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish the key (from 25 December 2026 only)
+        env:
+          GIFT_KEY: ${{ secrets.GIFT_KEY }}
+        run: |
+          if [ "$(date -u +%Y%m%d)" -lt 20261225 ]; then echo "Not Christmas Day yet"; exit 0; fi
+          if [ -f andy/key.json ]; then echo "Already unlocked"; exit 0; fi
+          if [ -z "$GIFT_KEY" ]; then echo "The GIFT_KEY secret is missing"; exit 1; fi
+          printf '{"k":"%s"}\n' "$GIFT_KEY" > andy/key.json
+          git config user.name "Grimmitt Games"
+          git config user.email "contact@grimmittgames.com"
+          git add andy/key.json
+          git commit -m "Merry Christmas, Andy"
+          git push

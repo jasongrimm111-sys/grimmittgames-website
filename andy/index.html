@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Andy</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0b0e">
+<meta property="og:title" content="Happy Birthday, Andy">
+<meta property="og:description" content="Your present is on the grid. It unlocks on Christmas Day.">
+<link rel="icon" href="/img/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&display=swap">
+<style>
+/* A night at the track: asphalt and carbon, racing red, a lap-timer countdown and a rev counter that climbs to Christmas */
+@font-face{font-family:'Space Grotesk';src:url('/fonts/SpaceGrotesk.woff2') format('woff2');font-weight:300 700;font-display:swap}
+:root{
+  --asphalt:#0a0b0e; --carbon:#14161b; --panel:#181b21; --line:#2a2e37; --chalk:#f3f1ea; --muted:#9aa1ad;
+  --red:#ff2a2a; --red-deep:#b3121a; --amber:#ffb400; --green:#2ee66b;
+  --display:'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
+  --body:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--asphalt);color:var(--chalk);font-family:var(--body);font-size:17px;line-height:1.5;min-height:100vh;overflow-x:hidden;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));
+  background-image:repeating-linear-gradient(45deg, rgba(255,255,255,.018) 0 2px, transparent 2px 6px), repeating-linear-gradient(-45deg, rgba(255,255,255,.018) 0 2px, transparent 2px 6px),
+    radial-gradient(ellipse at 50% -10%, rgba(255,42,42,.22), transparent 60%);}
+/* speed streaks across the whole page */
+.streaks{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.streaks i{position:absolute;height:2px;width:30vw;left:-40vw;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:streak linear infinite}
+@keyframes streak{to{transform:translateX(180vw)}}
+main{position:relative;z-index:1;max-width:900px;margin:0 auto;padding-block:40px 64px;display:grid;gap:34px}
+.kicker{font-family:var(--display);font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--red);font-size:.95rem;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:28px;height:3px;background:var(--red)}
+h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(3.2rem,13vw,7.6rem);line-height:.86;margin:0;letter-spacing:.01em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--red);display:block;text-shadow:0 0 40px rgba(255,42,42,.45)}
+.lead{font-size:clamp(1.05rem,2.6vw,1.3rem);max-width:58ch;margin:0;color:#d9d6cc}
+.lead b{color:var(--chalk)}
+.intro{display:grid;gap:22px}
+.chequer{height:16px;background:conic-gradient(var(--chalk) 25%, #000 0 50%, var(--chalk) 0 75%, #000 0) 0 0/16px 16px;opacity:.9;border-radius:3px}
+/* the countdown: a lap timer */
+.timer{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px clamp(14px,3vw,28px);display:grid;gap:18px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.timer h2{margin:0;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:1rem;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.timer h2 span:last-child{color:var(--amber)}
+.digits{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(6px,2vw,14px)}
+.digit{background:#0d0f13;border:1px solid #23262e;border-radius:12px;padding:12px 6px 10px;text-align:center;min-width:0}
+.digit b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,10vw,4.6rem);line-height:1;color:var(--chalk);font-variant-numeric:tabular-nums;text-shadow:0 0 18px rgba(255,180,0,.25)}
+.digit small{display:block;margin-top:6px;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+/* start lights */
+.lights{display:flex;justify-content:center;gap:clamp(8px,2.4vw,16px);padding:14px;background:#08090b;border-radius:14px;border:1px solid #1f2229}
+.lights span{width:clamp(30px,8vw,46px);aspect-ratio:1;border-radius:50%;background:#2a0b0d;box-shadow:inset 0 -4px 10px rgba(0,0,0,.6);transition:background .4s, box-shadow .4s}
+.lights span.on{background:radial-gradient(circle at 40% 35%,#ff8a8a,var(--red) 45%,var(--red-deep));box-shadow:0 0 22px rgba(255,42,42,.8),inset 0 -4px 10px rgba(0,0,0,.35)}
+.lights-cap{text-align:center;font-size:.85rem;color:var(--muted);margin:-8px 0 0}
+/* rev counter + covered car */
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:22px;align-items:stretch}
+@media (max-width:720px){ .grid2{grid-template-columns:1fr} }
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;min-width:0}
+.card h3{margin:0 0 6px;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1.6rem;letter-spacing:.02em}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.tacho{display:block;width:100%;max-width:340px;margin:6px auto 0}
+.tacho .num{font-family:var(--display);font-weight:700;font-size:15px;fill:#c9c6bd}
+.cover-wrap{position:relative;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.cover-wrap svg{display:block;width:100%;height:auto}
+.cover-wrap:focus-visible{outline:3px solid var(--amber);outline-offset:6px;border-radius:12px}
+.cover-wrap.shake svg{animation:shake .5s}
+@keyframes shake{20%{transform:translateX(-6px) rotate(-1deg)}40%{transform:translateX(6px) rotate(1deg)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.tag{position:absolute;right:8%;top:6%;background:var(--amber);color:#1a1200;font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:.08em;padding:6px 12px;border-radius:6px;transform:rotate(6deg);box-shadow:0 6px 18px rgba(0,0,0,.4);font-size:.95rem}
+.clue{min-height:3.2em;margin-top:10px;font-size:1.02rem;color:var(--chalk)}
+.clue em{font-style:normal;color:var(--amber)}
+.sign{font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:.04em;color:var(--muted)}
+.sign b{color:var(--chalk)}
+/* waiting for the key at midnight */
+.unwrap{display:none;text-align:center;gap:14px}
+.unwrap .spin{width:56px;height:56px;margin:0 auto;border-radius:50%;border:5px solid #2b2f38;border-top-color:var(--red);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+body.waiting .unwrap{display:grid} body.waiting .before-only{display:none!important}
+/* the reveal */
+.after{display:none}
+body.revealed .after{display:grid;gap:30px} body.revealed .before-only{display:none!important}
+.go{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(3.4rem,15vw,9rem);line-height:.85;margin:0;text-align:center;color:var(--green);text-shadow:0 0 50px rgba(46,230,107,.5)}
+.big{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(2.4rem,9vw,5.4rem);line-height:.9;margin:0;text-align:center;text-wrap:balance}
+.big em{font-style:normal;color:var(--red)}
+.car-hero{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.makes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:640px){ .makes{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.make{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center;min-width:0}
+.make b{display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1.45rem;line-height:1}
+.make small{display:block;margin-top:6px;color:var(--muted);font-size:.82rem}
+.make i{display:block;height:4px;border-radius:2px;margin:0 auto 12px;width:40px}
+.extras{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:720px){ .extras{grid-template-columns:1fr} }
+.extra{background:linear-gradient(160deg,#1d2027,#15171c);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.extra b{display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1.35rem;line-height:1.05;margin-bottom:6px}
+.extra p{margin:0;color:var(--muted);font-size:.95rem}
+.steps{display:grid;gap:10px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--display);font-weight:900;font-size:1.8rem;line-height:1;color:var(--red);min-width:22px}
+.steps li span{min-width:0;overflow-wrap:anywhere}
+.steps a{color:var(--chalk)}
+.dl{justify-self:center;display:inline-flex;align-items:center;gap:12px;border:0;cursor:pointer;font:inherit;font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(1.1rem,4.6vw,1.5rem);white-space:nowrap;
+  color:#160300;background:linear-gradient(180deg,#ff5a4a,var(--red) 55%,var(--red-deep));padding:16px 28px;border-radius:14px;box-shadow:0 8px 0 #6d0a0f,0 20px 40px rgba(255,42,42,.35);transition:transform .12s}
+.dl:hover{transform:translateY(-2px)} .dl:active{transform:translateY(4px);box-shadow:0 4px 0 #6d0a0f}
+.dl:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+.dl svg{width:26px;height:26px}
+.fine{text-align:center;color:var(--muted);font-size:.85rem;margin:-14px 0 0}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:5}
+.err{color:#ff9a8a;text-align:center;margin:0}
+@media (prefers-reduced-motion:reduce){ .streaks{display:none} .unwrap .spin{animation:none} .cover-wrap.shake svg{animation:none} }
+</style>
+</head>
+<body>
+<div class="streaks" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<main>
+
+  <!-- before Christmas -->
+  <section class="before-only intro">
+    <div class="kicker">21 November · Birthday</div>
+    <h1>Happy Birthday, <em>Andy!</em></h1>
+    <p class="lead">Plot twist: your birthday present is <b>also your Christmas present</b>. It's too big for one day, so it's a joint one. It's on the grid, it's covered up, and it unlocks on <b>Christmas Day</b>.</p>
+  </section>
+
+  <section class="timer before-only" aria-label="Countdown to Christmas Day">
+    <h2><span>Countdown to Christmas Day</span><span id="eta">25 December</span></h2>
+    <div class="digits" role="timer" aria-live="off">
+      <div class="digit"><b id="dd">--</b><small>Days</small></div>
+      <div class="digit"><b id="hh">--</b><small>Hours</small></div>
+      <div class="digit"><b id="mm">--</b><small>Mins</small></div>
+      <div class="digit"><b id="ss">--</b><small>Secs</small></div>
+    </div>
+    <div class="lights" id="lights" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="lights-cap" id="lightsCap">One light comes on for every week closer. When they go out, it's yours.</p>
+  </section>
+
+  <section class="grid2 before-only">
+    <div class="card">
+      <h3>Revving up</h3>
+      <p>From your birthday to Christmas Day, the needle climbs to the red line.</p>
+      <svg class="tacho" viewBox="0 0 300 220" role="img" aria-label="Rev counter showing how close Christmas is">
+        <defs><linearGradient id="arc" x1="0" x2="1"><stop offset="0" stop-color="#2ee66b"/><stop offset=".65" stop-color="#ffb400"/><stop offset="1" stop-color="#ff2a2a"/></linearGradient></defs>
+        <g id="ticks"></g>
+        <path id="arcPath" fill="none" stroke="url(#arc)" stroke-width="10" stroke-linecap="round"/>
+        <g id="needle"><line x1="150" y1="150" x2="150" y2="48" stroke="#ff2a2a" stroke-width="5" stroke-linecap="round"/><circle cx="150" cy="150" r="13" fill="#0d0f13" stroke="#ff2a2a" stroke-width="4"/></g>
+        <text x="150" y="196" text-anchor="middle" class="num" id="rpm" style="font-size:22px;fill:#f3f1ea">0 RPM</text>
+        <text x="150" y="214" text-anchor="middle" style="font-size:11px;fill:#9aa1ad;letter-spacing:3px">x1000</text>
+      </svg>
+    </div>
+    <div class="card">
+      <h3>No peeking</h3>
+      <p>Something is waiting under this cover. Tap it for a clue.</p>
+      <div class="cover-wrap" id="cover" role="button" tabindex="0" aria-label="The covered present: tap for a clue">
+        <svg viewBox="0 0 420 210" aria-hidden="true">
+          <ellipse cx="210" cy="190" rx="190" ry="12" fill="#000" opacity=".55"/>
+          <path d="M28 172 C30 150 46 132 80 124 C120 92 170 74 236 74 C290 74 330 96 366 120 C392 126 404 144 402 172 Z" fill="#2b2f38"/>
+          <path d="M28 172 C30 150 46 132 80 124 C120 92 170 74 236 74 C290 74 330 96 366 120 C392 126 404 144 402 172 Z" fill="url(#cloth)"/>
+          <defs><linearGradient id="cloth" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ff2a2a" stop-opacity=".0"/><stop offset=".18" stop-color="#ff2a2a" stop-opacity=".9"/><stop offset=".22" stop-color="#b3121a" stop-opacity=".9"/>
+            <stop offset=".46" stop-color="#ff2a2a" stop-opacity=".9"/><stop offset=".5" stop-color="#9c0f16" stop-opacity=".9"/><stop offset=".74" stop-color="#ff3d3d" stop-opacity=".9"/>
+            <stop offset=".79" stop-color="#a5101a" stop-opacity=".9"/><stop offset="1" stop-color="#ff2a2a" stop-opacity=".0"/></linearGradient></defs>
+          <path d="M70 126 C120 120 150 136 170 172 M190 80 C200 110 196 140 214 172 M270 80 C276 112 300 140 330 172 M340 112 C356 130 372 150 380 172" stroke="#000" stroke-opacity=".28" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="104" cy="170" r="20" fill="#111" stroke="#2b2f38" stroke-width="6"/><circle cx="324" cy="170" r="20" fill="#111" stroke="#2b2f38" stroke-width="6"/>
+          <path d="M28 172 L402 172" stroke="#7a0a10" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span class="tag">Do not open until 25 Dec</span>
+      </div>
+      <p class="clue" id="clue" aria-live="polite">Tap the cover.</p>
+    </div>
+  </section>
+
+  <div class="chequer before-only" aria-hidden="true"></div>
+  <p class="sign before-only">See you on Christmas Day. <b>Love, Jason</b></p>
+
+  <!-- midnight: fetching the key -->
+  <section class="unwrap" aria-live="polite">
+    <div class="spin" aria-hidden="true"></div>
+    <h2 class="big">Lights out<br><em>unwrapping…</em></h2>
+    <p class="lead" style="margin:0 auto">It's Christmas Day. Your present is on its way to this page: it can take a few minutes. Keep this page open and it will appear by itself.</p>
+  </section>
+
+  <!-- Christmas Day: the reveal -->
+  <section class="after" aria-live="polite">
+    <div class="lights" id="lights2" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+    <p class="go" id="go">Lights out!</p>
+    <h2 class="big">Andy, you're driving<br><em>four supercars</em></h2>
+    <svg class="car-hero" viewBox="0 0 820 260" role="img" aria-label="A red supercar at speed">
+      <g stroke="#ffffff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"><line x1="10" y1="120" x2="140" y2="120"/><line x1="40" y1="150" x2="190" y2="150"/><line x1="0" y1="185" x2="120" y2="185"/></g>
+      <ellipse cx="450" cy="226" rx="330" ry="14" fill="#000" opacity=".6"/>
+      <path d="M150 196 C150 170 170 156 214 150 L330 134 C380 98 440 80 520 80 C590 80 640 100 690 128 C730 134 770 150 780 176 L780 196 Z" fill="#ff2a2a"/>
+      <path d="M352 132 C392 104 446 92 516 92 C560 92 600 104 632 124 Z" fill="#14161b"/>
+      <path d="M520 92 L548 124" stroke="#ff2a2a" stroke-width="6"/>
+      <path d="M214 150 L330 134 L690 128" stroke="#b3121a" stroke-width="4" fill="none"/>
+      <path d="M600 150 L740 160" stroke="#14161b" stroke-width="7" stroke-linecap="round"/>
+      <path d="M150 196 L780 196" stroke="#7a0a10" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="270" cy="196" r="38" fill="#0d0f13"/><circle cx="270" cy="196" r="22" fill="#9aa1ad"/><circle cx="270" cy="196" r="8" fill="#ff2a2a"/>
+      <circle cx="660" cy="196" r="38" fill="#0d0f13"/><circle cx="660" cy="196" r="22" fill="#9aa1ad"/><circle cx="660" cy="196" r="8" fill="#ff2a2a"/>
+      <path d="M770 168 L790 168" stroke="#ffb400" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+    <p class="lead" style="text-align:center;margin:0 auto">Happy birthday <b>and</b> happy Christmas. You get to pick four cars from a line-up of the world's top supercars, drive up to <b>12 miles</b> in total, then strap in for a high-speed ride with a professional driver.</p>
+    <div class="makes">
+      <div class="make"><i style="background:#ff2a2a"></i><b>Ferrari</b><small>sleek and loud</small></div>
+      <div class="make"><i style="background:#ffb400"></i><b>Lamborghini</b><small>pure drama</small></div>
+      <div class="make"><i style="background:#2ee66b"></i><b>Aston Martin</b><small>very James Bond</small></div>
+      <div class="make"><i style="background:#9aa1ad"></i><b>Porsche</b><small>built for corners</small></div>
+    </div>
+    <p class="fine">The line-up varies by venue: you choose your four on the day.</p>
+    <div class="extras">
+      <div class="extra"><b>High-speed passenger ride</b><p>A professional driver shows you what the track can really do.</p></div>
+      <div class="extra"><b>Your photo</b><p>A picture of you with your supercar to keep.</p></div>
+      <div class="extra"><b>Your choice of date</b><p>Weekend and weekday dates at venues up and down the country, valid until 2 November 2027.</p></div>
+    </div>
+    <button class="dl" id="dl" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>Download your voucher</button>
+    <p class="err" id="err" hidden></p>
+    <ol class="steps">
+      <li><span>Download your voucher above: it has your serial number and PIN.</span></li>
+      <li><span>Register it at <a href="https://www.virginexperiencedays.co.uk/myvoucher" target="_blank" rel="noopener">virginexperiencedays.co.uk/myvoucher</a> (or scan the code on the voucher).</span></li>
+      <li><span>Contact the venue to book your date, then go and drive.</span></li>
+    </ol>
+    <div class="chequer" aria-hidden="true"></div>
+    <p class="sign" style="text-align:center">Happy birthday and happy Christmas, Andy. <b>Love, Jason</b></p>
+  </section>
+</main>
+
+<script>
+(() => {
+  // midnight on Christmas Day, UK time (GMT in December)
+  const START = Date.UTC(2026, 10, 21), TARGET = Date.UTC(2026, 11, 25);
+  const $ = id => document.getElementById(id), pad = n => String(n).padStart(2, '0');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // speed streaks
+  if (!reduce){ const s = document.querySelector('.streaks'); for (let i = 0; i < 14; i++){ const e = document.createElement('i'); e.style.top = (Math.random()*100) + '%'; e.style.animationDuration = (1.4 + Math.random()*2.6) + 's'; e.style.animationDelay = (-Math.random()*4) + 's'; e.style.opacity = (.12 + Math.random()*.3).toFixed(2); s.appendChild(e); } }
+  // rev counter: 0-8 (x1000 rpm) over a 240 degree sweep
+  const cx = 150, cy = 150, R = 110, A0 = -210, A1 = 30, pt = (a, r) => [cx + r*Math.cos(a*Math.PI/180), cy + r*Math.sin(a*Math.PI/180)];
+  { const [x0, y0] = pt(A0, R), [x1, y1] = pt(A1, R); $('arcPath').setAttribute('d', `M${x0.toFixed(1)} ${y0.toFixed(1)} A${R} ${R} 0 1 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`);
+    let g = ''; for (let i = 0; i <= 8; i++){ const a = A0 + (A1 - A0)*i/8, [ax, ay] = pt(a, R - 14), [bx, by] = pt(a, R - 28), [tx, ty] = pt(a, R - 44);
+      g += `<line x1="${ax.toFixed(1)}" y1="${ay.toFixed(1)}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="${i >= 7 ? '#ff2a2a' : '#c9c6bd'}" stroke-width="3"/><text x="${tx.toFixed(1)}" y="${(ty + 5).toFixed(1)}" text-anchor="middle" class="num">${i}</text>`; }
+    $('ticks').innerHTML = g; }
+  const setNeedle = k => { const a = A0 + (A1 - A0)*k + 90; $('needle').setAttribute('transform', `rotate(${a.toFixed(2)} ${cx} ${cy})`); $('rpm').textContent = Math.round(k*8000).toLocaleString('en-GB') + ' RPM'; };
+  // clues under the cover
+  const CLUES = ['It is <em>fast</em>. Very fast.', 'There are <em>four</em> of them.', 'You will need <em>both hands</em>.', 'It is definitely <em>not socks</em>.', 'Bring your <em>driving licence</em>.', 'Someone else does the <em>scary bit</em> too.', 'It comes with a <em>photo</em> of you.', 'It goes from 0 to 60 quicker than you can <em>unwrap it</em>.'];
+  let ci = 0; const cover = $('cover');
+  const tap = () => { cover.classList.remove('shake'); void cover.offsetWidth; cover.classList.add('shake'); $('clue').innerHTML = 'Clue ' + (ci % CLUES.length + 1) + ' of ' + CLUES.length + ': ' + CLUES[ci % CLUES.length]; ci++; };
+  cover.addEventListener('click', tap); cover.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); tap(); } });
+  // the countdown
+  let timer = null;
+  const tick = () => {
+    const now = Date.now(), left = TARGET - now;
+    if (left <= 0){ clearInterval(timer); unlock(); return; }
+    const d = Math.floor(left/864e5), h = Math.floor(left/36e5) % 24, m = Math.floor(left/6e4) % 60, s = Math.floor(left/1e3) % 60;
+    $('dd').textContent = d; $('hh').textContent = pad(h); $('mm').textContent = pad(m); $('ss').textContent = pad(s);
+    const k = Math.max(0, Math.min(1, (now - START)/(TARGET - START))); setNeedle(k);
+    const lit = Math.max(0, Math.min(5, Math.ceil(5 - d/7)));   // a light for every week closer: all five in the final week
+    document.querySelectorAll('#lights span').forEach((e, i) => e.classList.toggle('on', i < lit));
+    $('lightsCap').textContent = lit >= 5 ? 'All five lights are on. When they go out, it\'s yours.' : 'One light comes on for every week closer. When they go out, it\'s yours.';
+  };
+  // the key: published by a scheduled job at midnight on Christmas Day (key.json next to this page); a #preview=KEY link shows it early
+  const fromHash = () => { const m = /preview=([A-Za-z0-9+/=_-]+)/.exec(location.hash); return m ? m[1].replace(/-/g, '+').replace(/_/g, '/') : null; };
+  const getKey = async () => { const h = fromHash(); if (h) return h; try { const r = await fetch('key.json?t=' + Date.now(), { cache:'no-store' }); if (r.ok){ const j = await r.json(); return j.k || null; } } catch(e){} return null; };
+  const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  let pdfUrl = null;
+  const decrypt = async key => {
+    const buf = new Uint8Array(await (await fetch('voucher.bin', { cache:'no-store' })).arrayBuffer());
+    const k = await crypto.subtle.importKey('raw', b64(key), 'AES-GCM', false, ['decrypt']);
+    const pdf = await crypto.subtle.decrypt({ name:'AES-GCM', iv:buf.subarray(0, 12) }, k, buf.subarray(12));
+    pdfUrl = URL.createObjectURL(new Blob([pdf], { type:'application/pdf' }));
+  };
+  let polling = null;
+  async function unlock(){
+    const key = await getKey();
+    if (!key){ document.body.classList.add('waiting'); if (!polling) polling = setInterval(unlock, 20000); return; }
+    clearInterval(polling);
+    try { await decrypt(key); } catch(e){ document.body.classList.add('waiting'); return; }
+    document.body.classList.remove('waiting'); document.body.classList.add('revealed'); window.scrollTo(0, 0);
+    // the five red lights go out, then GO and confetti
+    const L = document.querySelectorAll('#lights2 span'); $('go').style.visibility = 'hidden';
+    setTimeout(() => { L.forEach(e => e.classList.remove('on')); $('go').style.visibility = ''; confetti(); }, reduce ? 0 : 1100);
+  }
+  $('dl').addEventListener('click', () => {
+    if (!pdfUrl){ $('err').hidden = false; $('err').textContent = 'The voucher is still loading: try again in a moment.'; return; }
+    const a = document.createElement('a'); a.href = pdfUrl; a.download = 'Andy - Supercar experience voucher.pdf'; document.body.appendChild(a); a.click(); a.remove();
+  });
+  // confetti in racing colours, plus chequered squares
+  function confetti(){
+    if (reduce) return; const c = $('confetti'), x = c.getContext('2d'); let W, H; const fit = () => { W = c.width = innerWidth; H = c.height = innerHeight; }; fit(); addEventListener('resize', fit);
+    const cols = ['#ff2a2a', '#ffb400', '#2ee66b', '#f3f1ea', '#111'], P = Array.from({ length:220 }, () => ({ x:Math.random()*W, y:-20 - Math.random()*H*.6, vx:(Math.random() - .5)*3, vy:2 + Math.random()*4, s:5 + Math.random()*8, r:Math.random()*6, vr:(Math.random() - .5)*.3, c:cols[(Math.random()*cols.length)|0] }));
+    const t0 = performance.now();
+    const step = t => { x.clearRect(0, 0, W, H); let alive = 0;
+      for (const p of P){ p.x += p.vx; p.y += p.vy; p.vy += .03; p.r += p.vr; if (p.y < H + 20) alive++; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-p.s/2, -p.s/3, p.s, p.s*.66); x.restore(); }
+      if (alive && t - t0 < 9000) requestAnimationFrame(step); else x.clearRect(0, 0, W, H); };
+    requestAnimationFrame(step);
+  }
+  // start: already Christmas (or a preview link)? reveal; otherwise count down
+  if (fromHash() || Date.now() >= TARGET) unlock(); else { tick(); timer = setInterval(tick, 1000); }
+})();
+</script>
+</body>
+</html>
