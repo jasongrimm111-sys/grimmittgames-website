@@ -209,6 +209,7 @@ body.waiting .unwrap{display:grid} body.waiting .before{display:none!important}
     const show = () => {
       $('after').innerHTML = P.html; document.body.classList.add('revealed'); window.scrollTo(0, 0);
       const dl = $('dl'); if (dl) dl.addEventListener('click', () => { const a = document.createElement('a'); a.href = pdfUrl; a.download = 'Andy - your present.pdf'; document.body.appendChild(a); a.click(); a.remove(); });
+      if (P.js) try { new Function('ctx', P.js)({ reduce }); } catch(e){}   // the present's own sequence, which arrives with it
       const L = document.querySelectorAll('#rvLights span'), go = $('rvGo'); if (go) go.style.visibility = 'hidden';
       setTimeout(() => { L.forEach(e => e.classList.remove('on')); if (go){ go.style.visibility = ''; go.classList.add('show'); } confetti(); }, reduce ? 0 : 1300);
     };
