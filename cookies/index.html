@@ -12,6 +12,7 @@
 <link rel="apple-touch-icon" href="/img/mark-180.png">
 <link rel="preload" href="/fonts/SpaceGrotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/consent.js"></script>
 </head>
 <body>
 
@@ -30,7 +31,7 @@
   <div class="wrap">
     <p class="kicker">Legal</p>
     <h1>Cookie policy</h1>
-    <p class="updated">Last updated 28 October 2026</p>
+    <p class="updated">Last updated 2 November 2026</p>
 <div class="box"><strong>The short version:</strong> grimmittgames.com does not use cookies or any similar technology, so there is nothing to accept or turn off.</div>
 
 <h2>What cookies are</h2>
@@ -41,18 +42,28 @@
 <thead><tr><th>Type</th><th>Used?</th><th>Details</th></tr></thead>
 <tbody>
 <tr><td>Strictly necessary cookies</td><td>No</td><td>The website doesn't need any cookies to work.</td></tr>
-<tr><td>Analytics or statistics</td><td>No</td><td>We don't measure or track visits.</td></tr>
+<tr><td>Analytics or statistics</td><td>Only if you accept</td><td>Google Analytics, to count visits and see which pages are popular. See below.</td></tr>
 <tr><td>Advertising or tracking</td><td>No</td><td>There are no adverts, tracking pixels or social media plug-ins.</td></tr>
-<tr><td>Browser storage</td><td>No</td><td>The website doesn't save anything on your device.</td></tr>
-<tr><td>Third-party content</td><td>No</td><td>Our fonts, images and videos are served from our own site, so no other company can set cookies through it.</td></tr>
+<tr><td>Browser storage</td><td>Yes</td><td>Your cookie choice is saved on your device (local storage, under the name <b>gg-consent</b>) so we don't ask again.</td></tr>
+<tr><td>Third-party content</td><td>Only if you accept</td><td>Our fonts, images and videos are served from our own site. Google Analytics is only loaded if you accept.</td></tr>
 </tbody></table></div>
 <p>Our web host, GitHub Pages, does not set cookies on the website. If you follow a link to another site, such as the App Store, that site's own cookie policy applies.</p>
+
+<h2>Google Analytics</h2>
+<p>If you accept, the site uses Google Analytics to count visits and see which pages are popular. It sets these cookies:</p>
+<ul><li><b>_ga</b>: tells one visitor from another (kept for 2 years)</li><li><b>_ga_JW23JSV7Q9</b>: keeps track of your current visit (kept for 2 years)</li></ul>
+<p>Google Analytics records things like the pages you view, your type of device and browser, and roughly where you are (worked out from your IP address, which isn't stored). We don't use it to identify you, for advertising, or to follow you on other sites. If you reject, or don't choose, these cookies aren't set and Google Analytics isn't loaded.</p>
+
+<h2>Your choice</h2>
+<p>You can change your choice at any time here, or with Cookie settings at the bottom of any page.</p>
+<p><button type="button" class="btn primary" data-ck="yes" style="border:0;cursor:pointer">Accept</button> <button type="button" class="btn" data-ck="no" style="border:1px solid var(--line);background:none;color:var(--cream);cursor:pointer">Reject</button></p>
+<p id="ckNow" data-yes="Your choice: analytics cookies are on." data-no="Your choice: analytics cookies are off." data-none="You haven't chosen yet, so analytics cookies are off."></p>
 
 <h2>Monkey Vine Rush</h2>
 <p>The Monkey Vine Rush website has its own <a href="https://monkeyvinerush.com/cookies/">cookie policy</a>.</p>
 
 <h2>If this changes</h2>
-<p>If we ever add something that uses cookies or similar technology, we will update this policy first and, where the law requires it, ask for your permission before anything is set.</p>
+<p>If we add anything else that uses cookies or similar technology, we will update this policy first and, where the law requires it, ask for your permission before anything is set.</p>
 
 <h2>Contact</h2>
 <p>Questions about cookies: <a href="mailto:contact@grimmittgames.com">contact@grimmittgames.com</a>.</p>
@@ -70,6 +81,7 @@
       <a href="/privacy/">Privacy</a>
       <a href="/terms/">Terms of use</a>
       <a href="/cookies/" aria-current="page">Cookies</a>
+      <button type="button" class="cklink" id="ckOpen">Cookie settings</button>
     </div>
     <div class="yt"><a class="ytbadge" href="https://www.youtube.com/" aria-label="YouTube"><img src="/img/youtube/developed-with-youtube-light.png" alt="Developed with YouTube" width="200" height="40"></a><span>Our videos are published using YouTube API Services · <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a> · <a href="https://policies.google.com/privacy">Google Privacy Policy</a></span></div>
     <p class="legal">© 2026 Grimmitt Games Limited. Registered in England and Wales, company number 17531910. Apple and App Store are trademarks of Apple Inc.</p>
