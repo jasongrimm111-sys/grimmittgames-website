@@ -25,6 +25,7 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0}
+html{overflow-x:clip}
 body{background:var(--night);color:var(--cream);font-family:var(--body);font-size:17px;line-height:1.5;min-height:100vh;overflow-x:hidden;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));
   background-image:radial-gradient(ellipse at 20% -10%, rgba(255,95,162,.28), transparent 55%), radial-gradient(ellipse at 90% 10%, rgba(108,196,255,.18), transparent 50%),
@@ -139,7 +140,7 @@ body.waiting .unwrap{display:grid} body.waiting .before{display:none!important}
     </div>
   </section>
 
-  <p class="sign before">Happy birthday, Andy. <b>Love Jason, Emma and Eli x</b></p>
+  <p class="sign before">Happy birthday, Andy.<br><b>Love Jason, Emma and Eli xxx</b></p>
 
   <section class="unwrap" aria-live="polite">
     <div class="spin" aria-hidden="true"></div>
@@ -209,7 +210,7 @@ body.waiting .unwrap{display:grid} body.waiting .before{display:none!important}
       $('after').innerHTML = P.html; document.body.classList.add('revealed'); window.scrollTo(0, 0);
       const dl = $('dl'); if (dl) dl.addEventListener('click', () => { const a = document.createElement('a'); a.href = pdfUrl; a.download = 'Andy - your present.pdf'; document.body.appendChild(a); a.click(); a.remove(); });
       const L = document.querySelectorAll('#rvLights span'), go = $('rvGo'); if (go) go.style.visibility = 'hidden';
-      setTimeout(() => { L.forEach(e => e.classList.remove('on')); if (go) go.style.visibility = ''; confetti(); }, reduce ? 0 : 1300);
+      setTimeout(() => { L.forEach(e => e.classList.remove('on')); if (go){ go.style.visibility = ''; go.classList.add('show'); } confetti(); }, reduce ? 0 : 1300);
     };
     if (reduce) show(); else { document.body.classList.add('opening'); gb.scrollIntoView({ block:'center', behavior:'smooth' }); setTimeout(show, 1500); }
   }
