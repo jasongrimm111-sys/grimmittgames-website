@@ -1,7 +1,7 @@
-# Christmas Day 2026: publishes the key that unlocks Andy's present on grimmittgames.com/andy
-# (the voucher is on the site only in encrypted form; the key is the repository secret GIFT_KEY).
-# Runs a few times after midnight in case GitHub delays a scheduled run; does nothing once the key is out, or before the day.
-name: Unlock Andy's present
+# Christmas Day 2026: publishes the keys that unlock the presents on grimmittgames.com/andy and grimmittgames.com/giada
+# (the vouchers are on the site only in encrypted form; the keys are the repository secrets GIFT_KEY and GIFT_KEY_GIADA).
+# Runs a few times after midnight in case GitHub delays a scheduled run; does nothing once a key is out, or before the day.
+name: Unlock the Christmas presents
 on:
   schedule:
     - cron: '1 0 25 12 *'
@@ -17,16 +17,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Publish the key (from 25 December 2026 only)
+      - name: Publish the keys (from 25 December 2026 only)
         env:
           GIFT_KEY: ${{ secrets.GIFT_KEY }}
+          GIFT_KEY_GIADA: ${{ secrets.GIFT_KEY_GIADA }}
         run: |
           if [ "$(date -u +%Y%m%d)" -lt 20261225 ]; then echo "Not Christmas Day yet"; exit 0; fi
-          if [ -f andy/key.json ]; then echo "Already unlocked"; exit 0; fi
-          if [ -z "$GIFT_KEY" ]; then echo "The GIFT_KEY secret is missing"; exit 1; fi
-          printf '{"k":"%s"}\n' "$GIFT_KEY" > andy/key.json
-          git config user.name "Grimmitt Games"
-          git config user.email "contact@grimmittgames.com"
-          git add andy/key.json
-          git commit -m "Merry Christmas, Andy"
-          git push
+          changed=0; missing=0
+          if [ ! -f andy/key.json ]; then
+            if [ -n "$GIFT_KEY" ]; then printf '{"k":"%s"}\n' "$GIFT_KEY" > andy/key.json; git add andy/key.json; changed=1; else echo "The GIFT_KEY secret is missing"; missing=1; fi
+          fi
+          if [ ! -f giada/key.json ]; then
+            if [ -n "$GIFT_KEY_GIADA" ]; then printf '{"k":"%s"}\n' "$GIFT_KEY_GIADA" > giada/key.json; git add giada/key.json; changed=1; else echo "The GIFT_KEY_GIADA secret is missing"; missing=1; fi
+          fi
+          if [ "$changed" = 1 ]; then
+            git config user.name "Grimmitt Games"
+            git config user.email "contact@grimmittgames.com"
+            git commit -m "Merry Christmas"
+            git push
+          else echo "Nothing to unlock"; fi
+          exit $missing
