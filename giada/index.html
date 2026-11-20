@@ -67,9 +67,24 @@ h1 em{display:block;font-style:italic;font-weight:500;color:var(--gold)}
 .say{min-height:2.6em;margin:8px 0 0;text-align:center;font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--gold)}
 #lid{transition:transform 1.1s cubic-bezier(.2,.8,.2,1),opacity 1.1s}
 body.opening #lid{transform:translate(40px,-260px) rotate(28deg);opacity:0}
-.note{max-width:560px;margin:0 auto;text-align:center;background:var(--cream);color:#1d2b24;border-radius:6px;padding:26px 24px 22px;transform:rotate(-1deg);box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.note p{margin:0;font-family:var(--display);font-size:1.3rem;line-height:1.35}
-.note .from{margin-top:12px;font-style:italic;color:#9e1e2a;font-size:1.4rem}
+/* advent calendar: 24 doors that swing open on their day */
+.adv{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:16px}
+@media (max-width:620px){ .adv{grid-template-columns:repeat(4,minmax(0,1fr))} }
+.door{position:relative;aspect-ratio:1;perspective:600px;border:0;padding:0;background:#0b261b;border-radius:10px;cursor:pointer;color:var(--cream);font:inherit;-webkit-tap-highlight-color:transparent;box-shadow:inset 0 0 0 1px var(--line)}
+.door:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.door .in{position:absolute;inset:0;display:grid;place-content:center}
+.door .in svg{width:clamp(22px,5vw,36px);height:auto}
+.door .face{position:absolute;inset:0;border-radius:10px;display:grid;place-content:center;transform-origin:0 50%;transition:transform .8s cubic-bezier(.3,.7,.2,1);backface-visibility:hidden;
+  background:linear-gradient(145deg,var(--dc),var(--dk));box-shadow:inset 0 0 0 2px rgba(255,255,255,.12)}
+.door .face b{font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,4vw,1.9rem);line-height:1}
+.door.open .face{transform:rotateY(-105deg)}
+.door.locked{cursor:default} .door.locked .face{filter:saturate(.55) brightness(.8)}
+.door.today .face{box-shadow:inset 0 0 0 2px var(--gold),0 0 18px rgba(240,195,90,.45);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:inset 0 0 0 2px var(--gold),0 0 4px rgba(240,195,90,.2)}}
+.door.nope{animation:wobble .5s}
+.advsay{min-height:3em;margin:14px auto 0;max-width:46ch;text-align:center;font-family:var(--display);font-size:1.15rem;line-height:1.35;color:var(--cream)}
+.advsay b{display:block;font-style:italic;font-weight:500;color:var(--gold);margin-top:4px;opacity:0;transition:opacity .6s}
+.advsay b.on{opacity:1}
 /* midnight: waiting for the present to arrive */
 .unwrap{display:none;text-align:center;gap:12px}
 .unwrap .spin{width:54px;height:54px;margin:0 auto;border-radius:50%;border:5px solid rgba(255,255,255,.15);border-top-color:var(--gold);animation:spin 1s linear infinite}
@@ -78,7 +93,7 @@ body.opening #lid{transform:translate(40px,-260px) rotate(28deg);opacity:0}
 body.waiting .unwrap{display:grid} body.waiting .before{display:none!important}
 #after{display:none} body.revealed #after{display:block} body.revealed .before{display:none!important}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:5}
-@media (prefers-reduced-motion:reduce){ .snow{display:none} .bauble,.bulb.on,.unwrap .spin{animation:none} .giftbtn.wobble .gift{animation:none} }
+@media (prefers-reduced-motion:reduce){ .door .face{transition:none} .door.today .face,.door.nope{animation:none} .snow{display:none} .bauble,.bulb.on,.unwrap .spin{animation:none} .giftbtn.wobble .gift{animation:none} }
 </style>
 </head>
 <body>
@@ -140,10 +155,12 @@ body.waiting .unwrap{display:grid} body.waiting .before{display:none!important}
     </div>
   </section>
 
-  <div class="note before">
-    <p>Happy Christmas, thanks for all of your support this last year.</p>
-    <p class="from">From Jason</p>
-  </div>
+  <section class="card before" aria-label="Advent calendar">
+    <h2>Advent calendar</h2>
+    <p id="advCap">A door opens every day from 1 December. Come back each day for the next one.</p>
+    <div class="adv" id="adv"></div>
+    <p class="advsay" id="advSay" aria-live="polite"></p>
+  </section>
 
   <section class="unwrap" aria-live="polite">
     <div class="spin" aria-hidden="true"></div>
@@ -175,6 +192,52 @@ body.waiting .unwrap{display:grid} body.waiting .before{display:none!important}
   const SAYS = ['Nice try.', 'Shaking it won\'t help.', 'Still wrapped.', 'Patience, Giada.', 'Not until the 25th.', 'It\'s not socks. Probably.', 'That tickles.', 'The elves say no.'];
   let si = 0; const gb = $('giftBtn');
   gb.addEventListener('click', () => { gb.classList.remove('wobble'); void gb.offsetWidth; gb.classList.add('wobble'); $('say').textContent = SAYS[si++ % SAYS.length]; });
+  // advent calendar: door N opens from N December (UK time is UTC in December); opened doors are remembered on this device
+  const ADV = [
+    ['Why did the snowman look through the carrots?', 'He was picking his nose.'],
+    ['What do you call a cat on the beach at Christmas?', 'Sandy Claws.'],
+    ['What do elves learn at school?', 'The elf-abet.'],
+    ['Why are Christmas trees bad at knitting?', 'They keep dropping their needles.'],
+    ['What is a snowman\'s favourite breakfast?', 'Frosted flakes.'],
+    ['Who hides in the bakery at Christmas?', 'A mince spy.'],
+    ['What do you get if you cross a bell with a skunk?', 'Jingle smells.'],
+    ['How does a sheep say Happy Christmas?', 'Fleece Navidad.'],
+    ['What is Santa\'s favourite sandwich?', 'Peanut butter and jolly.'],
+    ['Why was the turkey in the band?', 'It had the drumsticks.'],
+    ['What do reindeer hang on their trees?', 'Horn-aments.'],
+    ['What do you call a snowman in July?', 'A puddle.'],
+    ['What is green, covered in tinsel and goes ribbit?', 'A mistle-toad.'],
+    ['What do angry mice send at Christmas?', 'Cross-mouse cards.'],
+    ['Why does Santa go down the chimney?', 'Because it soots him.'],
+    ['What do you call Santa when he takes a break?', 'Santa Pause.'],
+    ['What carol do they sing in the desert?', 'O Camel Ye Faithful.'],
+    ['What did one bauble say to the other?', 'Fancy hanging out?'],
+    ['Why is everyone so cold at Christmas?', 'Because it\'s Decemberrrr.'],
+    ['What does Santa do in his garden?', 'Hoe, hoe, hoe.'],
+    ['What do you call a greedy elf?', 'Elfish.'],
+    ['What do you call an obnoxious reindeer?', 'Rude-olph.'],
+    ['What do snowmen eat for lunch?', 'Iceberg-ers.'],
+    ['What can you open tomorrow?', 'Come back after midnight and see.'],
+  ];
+  const ICONS = ['<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4l4.6 9.4 10.4 1.5-7.5 7.3 1.8 10.3L20 27.6l-9.3 4.9 1.8-10.3-7.5-7.3 10.4-1.5z" fill="#f0c35a"/></svg>',
+    '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="24" r="12" fill="#d23a45"/><rect x="16" y="8" width="8" height="6" rx="2" fill="#f0c35a"/><circle cx="16" cy="20" r="3" fill="#fff" opacity=".5"/></svg>',
+    '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4L32 20H26L34 32H6L14 20H8Z" fill="#3e9a74"/><rect x="17" y="32" width="6" height="5" fill="#8a5a36"/></svg>',
+    '<svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#cfe9ff" stroke-width="3" stroke-linecap="round"><path d="M20 4v32M6 12l28 16M6 28l28-16"/></g></svg>'];
+  const ADV_KEY = 'giada-advent'; let opened = new Set(); try { opened = new Set(JSON.parse(localStorage.getItem(ADV_KEY) || '[]')); } catch(e){}
+  const dayNow = () => { const n = new Date(); return n.getUTCFullYear() === 2026 && n.getUTCMonth() === 11 ? Math.min(24, n.getUTCDate()) : 0; };
+  const DCOL = [['#c8323c', '#7e1820'], ['#22704f', '#0f3d2a'], ['#c9962f', '#7a5512'], ['#3a6d97', '#1b3a55']];
+  const ORDER = [7, 18, 3, 12, 22, 1, 15, 9, 24, 5, 20, 11, 2, 17, 8, 23, 13, 4, 19, 10, 6, 14, 21, 16];   // jumbled, like a real calendar
+  $('adv').innerHTML = ORDER.map((d, i) => `<button class="door" type="button" data-d="${d}" style="--dc:${DCOL[i % 4][0]};--dk:${DCOL[i % 4][1]}" aria-label="Door ${d}"><span class="in">${ICONS[d % 4]}</span><span class="face"><b>${d}</b></span></button>`).join('');
+  const paintAdv = () => { const t = dayNow();
+    document.querySelectorAll('.door').forEach(b => { const d = +b.dataset.d; b.classList.toggle('locked', d > t); b.classList.toggle('today', d === t && !opened.has(d)); b.classList.toggle('open', opened.has(d) && d <= t); });
+    $('advCap').textContent = t >= 24 ? 'Every door is open. Only the present is left.' : t ? `Day ${t}: today's door is glowing. A new one opens every day.` : 'A door opens every day from 1 December. Come back each day for the next one.'; };
+  let advT = null;
+  $('adv').addEventListener('click', e => { const b = e.target.closest('.door'); if (!b) return; const d = +b.dataset.d, t = dayNow(), say = $('advSay');
+    if (d > t){ b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); say.textContent = t ? `Door ${d} opens on ${d} December.` : 'The first door opens on 1 December.'; return; }
+    opened.add(d); try { localStorage.setItem(ADV_KEY, JSON.stringify([...opened])); } catch(e){} paintAdv();
+    const [q, a] = ADV[d - 1]; clearTimeout(advT); say.innerHTML = `${esc(q)}<b>${esc(a)}</b>`; advT = setTimeout(() => say.querySelector('b').classList.add('on'), 2200); });
+  const esc = t => t.replace(/[&<>]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' })[c]);
+  paintAdv();
   // the countdown
   let timer = null;
   const tick = () => {
@@ -185,6 +248,7 @@ body.waiting .unwrap{display:grid} body.waiting .before{display:none!important}
     const n = new Date(now), dec = n.getUTCFullYear() === 2026 && n.getUTCMonth() === 11 ? n.getUTCDate() : 0, lit = Math.min(24, dec);
     for (let i = 0; i < 24; i++){ const b = $('b' + i); b.classList.toggle('off', i >= lit); b.classList.toggle('on', i < lit); }
     $('star').setAttribute('opacity', lit >= 24 ? '1' : '.25');
+    if (s === 0 && m === 0) paintAdv();   // a new door at midnight
     $('treeCap').textContent = lit >= 24 ? 'Every light is on. Nearly there.' : lit ? `${lit} of 24 lights on: one more for every day of December.` : 'A light comes on for every day of December.';
   };
   // the present itself is encrypted (gift.bin); its key is published at midnight on Christmas Day (key.json). #preview=KEY opens it early.
